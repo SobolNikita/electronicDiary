@@ -44,6 +44,7 @@ void LoginPage::on_btnLogin_clicked()
         MainWindow *mainWin = new MainWindow();
         mainWin->show();
         this->close();
+        delete ui;
     } else {
         QMessageBox::warning(this, "Ошибка входа", "Неверный логин или пароль");
     }

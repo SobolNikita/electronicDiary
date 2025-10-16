@@ -1,10 +1,11 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-
+#include "addUserPage.h"
 #include "loginpage.h"
 
 #include <QMenu>
 #include <QSettings>
+#include <QSqlQuery>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
 
     ui->setupUi(this);
+
+
 
     QToolButton *btnAccount = ui->btnAccount;
 
@@ -22,6 +25,36 @@ MainWindow::MainWindow(QWidget *parent)
     menu->addAction("Выйти", this, SLOT(onLogoutClicked()));
 
     btnAccount->setMenu(menu);
+
+    QSqlQuery query;
+    QSettings settings("EduDiary", "Login");
+
+    const QString& username = settings.value("username").toString();
+
+    query.prepare("SELECT role FROM users WHERE username = :username");
+    query.bindValue(":username", username);
+
+    if (query.exec()) {
+        if (query.next()) {
+            QString role = query.value(0).toString();
+            if (role != "admin"){
+                QWidget *button = ui->pbAddUser;
+                QLayout *layout = ui->widget->layout();
+                if (layout && button) {
+                    layout->removeWidget(button);
+                    delete button;
+                    ui->pbAddUser = nullptr;
+                }
+
+            }
+        } else {
+            qDebug() << "Пользователь не найден";
+        }
+    } else {
+        qDebug() << "Ошибка выполнения запроса";
+    }
+
+
 }
 
 MainWindow::~MainWindow()
@@ -51,3 +84,10 @@ void MainWindow::onLogoutClicked()
 
     this->close();
 }
+
+void MainWindow::on_pbAddUser_clicked()
+{
+    addUserPage *up = new addUserPage(this);
+    up->exec();
+}
+

@@ -27,6 +27,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         loginpage.h loginpage.cpp loginpage.ui
         authmanager.h authmanager.cpp
         dbmanager.h dbmanager.cpp
+        adduserpage.h adduserpage.cpp adduserpage.ui
+
+
+
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET electronicDiary APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

@@ -33,7 +33,7 @@ bool DBManager::initDatabase() {
             token TEXT,
             full_name TEXT,
             role TEXT NOT NULL,
-            class_id INTEGER
+            class_id TEXT
         );
     )";
 

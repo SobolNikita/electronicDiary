@@ -22,6 +22,8 @@ private slots:
     void onSettingsClicked();
     void onLogoutClicked();
 
+    void on_pbAddUser_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
