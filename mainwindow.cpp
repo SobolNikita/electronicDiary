@@ -2,6 +2,7 @@
 #include "./ui_mainwindow.h"
 #include "addUserPage.h"
 #include "loginpage.h"
+#include "profilepage.h"
 
 #include <QMenu>
 #include <QSettings>
@@ -65,7 +66,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::onProfileClicked()
 {
-    qDebug() << "Профиль открыт";
+    profilePage *pp = new profilePage(this);
+    pp->exec();
 }
 
 void MainWindow::onSettingsClicked()

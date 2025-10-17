@@ -28,6 +28,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         authmanager.h authmanager.cpp
         dbmanager.h dbmanager.cpp
         adduserpage.h adduserpage.cpp adduserpage.ui
+        profilepage.h profilepage.cpp profilepage.ui
 
 
 
